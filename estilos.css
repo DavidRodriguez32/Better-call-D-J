@@ -812,20 +812,35 @@ p {
   margin-bottom: 5px;
 }
 
+.sello-confidencial {
+  display: inline-block;
+  background-color: #c1121f;
+  color: white;
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
+}
 
 .grid-item::before {
   content: "CONFIDENCIAL";
   position: absolute;
-  top: 15px;
-  right: -35px;
-  background-color: #8b0000;
-  color: white;
+  top: 10px;
+  right: -50px;
+  background: linear-gradient(135deg, #c1121f 0%, #8b0000 100%);
+  color: #fff;
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 2px;
-  padding: 3px 40px;
+  padding: 7px 50px;
   transform: rotate(45deg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
 }
 
 .boton-salir {

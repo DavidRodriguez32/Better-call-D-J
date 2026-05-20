@@ -55,7 +55,7 @@ const cabecera_peticion = new Headers();
 cabecera_peticion.append("Accept", "application/json");
 cabecera_peticion.append("Content-Type", "application/json");
 
-let requestoptions = {
+let opcionesPeticion = {
     method: "GET",
     headers: cabecera_peticion,
     redirect: "follow"
@@ -63,7 +63,6 @@ let requestoptions = {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    //API externa para generar alias de criminales
     if (btnGenerarAlias) {
         btnGenerarAlias.addEventListener("click", () => {
             fetch(ENDPOINT_ALIAS, {
@@ -72,19 +71,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     'X-Api-Key': API_KEY
                 }
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error en la petición:${response.status}`);
+                .then(respuesta => {
+                    if (!respuesta.ok) {
+                        throw new Error(`Error en la petición:${respuesta.status}`);
                     }
-                    return response.json();
+                    return respuesta.json();
                 })
-                .then(data => {
-                    const nuevoAlias = data.username;
+                .then(datos => {
+                    const nuevoAlias = datos.username;
                     inputAlias.value = nuevoAlias;
                 })
                 .catch(error => {
                     console.error(`${error.name}: ${error.message}`);
-
                     inputAlias.value = "";
                     inputAlias.placeholder = "Error al generar alias";
                 });
@@ -178,14 +176,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (formularioClientes) {
 
         function cargarAgentes() {
-            fetch(ENDPOINT_OBTENER_AGENTES, requestoptions)
-                .then(response => response.json())
+            fetch(ENDPOINT_OBTENER_AGENTES, opcionesPeticion)
+                .then(respuesta => respuesta.json())
                 .then(agentes => {
                     agentes.forEach(agente => {
-                        const option = document.createElement("option");
-                        option.value = agente.id_agente;
-                        option.textContent = agente.nombre;
-                        campoAgente.appendChild(option);
+                        const opcionAgente = document.createElement("option");
+                        opcionAgente.value = agente.id_agente;
+                        opcionAgente.textContent = agente.nombre;
+                        campoAgente.appendChild(opcionAgente);
                     });
                 })
                 .catch(error => console.error("Error al cargar agentes:", error));
@@ -258,18 +256,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function consultarClientes() {
-            requestoptions.method = "GET";
-            delete requestoptions.body;
+            opcionesPeticion.method = "GET";
+            delete opcionesPeticion.body;
 
-            fetch(ENDPOINT_OBTENER_CLIENTES, requestoptions)
-                .then(response => {
-                    if (!response.ok) {
+            fetch(ENDPOINT_OBTENER_CLIENTES, opcionesPeticion)
+                .then(respuesta => {
+                    if (!respuesta.ok) {
                         throw new Error("Error al obtener los clientes");
                     }
-                    return response.json();
+                    return respuesta.json();
                 })
-                .then(data => {
-                    mostrarClientes(data);
+                .then(datos => {
+                    mostrarClientes(datos);
                 })
                 .catch(error => {
                     mensajesalida.innerHTML = `<p style="color:red;">${error.name}: ${error.message}</p>`;
@@ -277,17 +275,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function insertarCliente(cliente) {
-            requestoptions.method = "POST";
-            requestoptions.body = JSON.stringify(cliente);
+            opcionesPeticion.method = "POST";
+            opcionesPeticion.body = JSON.stringify(cliente);
 
-            fetch(ENDPOINT_GESTION_CLIENTE, requestoptions)
-                .then(response => {
-                    if (!response.ok) {
+            fetch(ENDPOINT_GESTION_CLIENTE, opcionesPeticion)
+                .then(respuesta => {
+                    if (!respuesta.ok) {
                         throw new Error("Error al guardar cliente");
                     }
-                    return response.json();
+                    return respuesta.json();
                 })
-                .then(data => {
+                .then(datos => {
                     mensajesalida.innerHTML = `<p style="color: green; font-weight: bold;">¡Cliente guardado!</p>`;
                     setTimeout(() => { consultarClientes(); }, 2000);
                 })
@@ -297,17 +295,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function eliminarCliente(cliente) {
-            requestoptions.method = "DELETE";
-            delete requestoptions.body;
+            opcionesPeticion.method = "DELETE";
+            delete opcionesPeticion.body;
 
-            fetch(ENDPOINT_GESTION_CLIENTE + `/${cliente.id_cliente}`, requestoptions)
-                .then(response => {
-                    if (!response.ok) {
+            fetch(ENDPOINT_GESTION_CLIENTE + `/${cliente.id_cliente}`, opcionesPeticion)
+                .then(respuesta => {
+                    if (!respuesta.ok) {
                         throw new Error("Error al borrar");
                     }
-                    return response.json();
+                    return respuesta.json();
                 })
-                .then(data => {
+                .then(datos => {
                     inputId.value = "";
                     campoNombre.value = "";
                     campoAlias.value = "";
@@ -321,17 +319,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function actualizarCliente(cliente) {
-            requestoptions.method = "PUT";
-            requestoptions.body = JSON.stringify(cliente);
+            opcionesPeticion.method = "PUT";
+            opcionesPeticion.body = JSON.stringify(cliente);
 
-            fetch(ENDPOINT_GESTION_CLIENTE + `/${cliente.id_cliente}`, requestoptions)
-                .then(response => {
-                    if (!response.ok) {
+            fetch(ENDPOINT_GESTION_CLIENTE + `/${cliente.id_cliente}`, opcionesPeticion)
+                .then(respuesta => {
+                    if (!respuesta.ok) {
                         throw new Error("Error al modificar papeles");
                     }
-                    return response.json();
+                    return respuesta.json();
                 })
-                .then(data => {
+                .then(datos => {
                     mensajesalida.innerHTML = `<p style="color: green; font-weight: bold;">Expediente modificado.</p>`;
                     setTimeout(() => { consultarClientes(); }, 2000);
                 })
@@ -347,14 +345,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const cliente_nuevo = {
+            const clienteNuevo = {
                 nombre: campoNombre.value,
                 alias: campoAlias.value,
                 delito: campoDelito.value,
                 id_agente: campoAgente.value
             };
 
-            insertarCliente(cliente_nuevo);
+            insertarCliente(clienteNuevo);
         });
 
         botoneliminarcliente.addEventListener("click", () => {
@@ -364,11 +362,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const cliente_a_borrar = {
+            const clienteBorrar = {
                 id_cliente: inputId.value
             };
 
-            eliminarCliente(cliente_a_borrar);
+            eliminarCliente(clienteBorrar);
         });
 
         botonactualizarcliente.addEventListener("click", () => {
@@ -378,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const cliente_modificado = {
+            const clienteModificado = {
                 id_cliente: inputId.value,
                 nombre: campoNombre.value,
                 alias: campoAlias.value,
@@ -386,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 id_agente: campoAgente.value
             };
 
-            actualizarCliente(cliente_modificado);
+            actualizarCliente(clienteModificado);
         });
 
         consultarClientes();
