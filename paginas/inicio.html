@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="../imagenes/favicon.ico" sizes="96x96" />
+  <title>Better Call D&J - Lista de clientes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://googleapis.com" rel="stylesheet">
+  <link rel="stylesheet" href="../estilos.css" />
+</head>
+
+<body>
+  <header>
+    <h1><img src="../imagenes/logo.png" alt="Better Call D&J" /></h1>
+    <audio class="audio" autoplay loop>
+      <source src="../audio/better-call-saul-intro.mp3">
+    </audio>
+    <h3>¡Te sacamos de la cárcel hoy mismo!</h3>
+    <nav>
+      <ul>
+        <li><a href="index.html">D&J</a></li>
+        <li><a href="inicio.html">Clientes</a></li>
+        <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+      </ul>
+    </nav>
+    <a href="../entrada.html" class="boton-salir">Salir de la oficina</a>
+  </header>
+  <main>
+    <div class="panel-coartada panel-ancho">
+      <h2 class="titulo-seccion">Archivo de Clientes (Máxima Confidencialidad)</h2>
+      <p>Introduce los datos del sujeto. Si las cosas se ponen feas, genérale un alias antes de guardarlo en nuestra
+        base de datos.</p>
+
+      <form id="formulario-clientes" class="controles">
+        <input type="hidden" id="cliente-id" />
+
+        <label class="titulos-botones">Nombre (El que le dio a la policía):</label>
+        <input type="text" id="nombre" placeholder="Ej. Walter White" required>
+
+        <label class="titulos-botones">Identidad Falsa / Alias:</label>
+        <div class="controles-horizontal">
+          <input type="text" id="alias" placeholder="Ej. Heisenberg">
+          <!-- ESTE BOTÓN LLAMARA A LA API EXTERNA QUE ELIJAMOS-->
+          <button type="button" id="btn-generar-alias" class="btn-coartada">Generar Alias</button>
+        </div>
+
+        <label class="titulos-botones">Naturaleza del problema:</label>
+        <select id="delito" class="select-delito">
+          <option value="Evasión de impuestos">Evasión de impuestos</option>
+          <option value='Distribución de "química"'>Distribución de "química"</option>
+          <option value="Robo de identidad">Robo de identidad</option>
+          <option value='Un simple "malentendido"'>Un simple "malentendido"</option>
+        </select>
+
+        <label class="titulos-botones">Agente de la DEA asignado:</label>
+        <select id="selectAgente" class="select-delito">
+          <option value="">-- Ninguno / Sin asignar --</option>
+        </select>
+
+        <!-- ESTOS BOTONES LLAMARAN A LA API DE NODE.JS -->
+        <div class="controles-horizontal">
+          <button type="submit" id="btn-guardar">Añadir a la lista</button>
+          <button type="button" id="btn-actualizar">Modificar</button>
+          <button type="button" id="btn-borrar">Borrar Rastro (Delete)</button>
+        </div>
+      </form>
+    </div>
+    <div id="mensajesalida" class="panel-coartada panel-ancho"></div>
+  </main>
+  <footer>
+    <h3>HABLAMOS ESPAÑOL · MÁLAGA · NO GRATUITA · (505) 503-4455</h3>
+    <h2>¿Problemas legales?, acude a nuestras redes sociales y te ayudaremos</h2>
+    <div class="footer-ordenado">
+
+      <a href="https://x.com/BetterCallSaul"><img src="../imagenes/logoX.png"></a>
+      <a href="https://www.instagram.com/bettercallsaulamc/"><img src="../imagenes/instagram.png"></a>
+      <a href="https://www.youtube.com/@breakingbad"><img src="../imagenes/YT.png"></a>
+
+    </div>
+    <p>&copy; 2026 Better Call D&J. Todos los derechos reservados.</p>
+  </footer>
+  <script src="../js/javascript.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="../imagenes/favicon.ico" sizes="96x96">
+    <title>Better Call D&J - Servicios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos.css" />
+  </head>
+  <body>
+    <header>
+      <h1><img src="../imagenes/logo.png" alt="Better Call D&J" /></h1>
+      <audio class="audio" autoplay loop>
+        <source src="../audio/better-call-saul-intro.mp3">
+      </audio>
+      <h3>¡Te sacamos de la cárcel hoy mismo!</h3>
+      <nav>
+        <ul>
+          <li><a href="index.html">D&J</a></li>
+          <li><a href="inicio.html">Clientes</a></li>
+          <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+        </ul>
+      </nav>
+      <a href="../entrada.html" class="boton-salir">Salir de la oficina</a>
+    </header>
+    <main>
+      <h2>¿En problemas legales?</h2>
+      <div class="grid-servicios">
+        <div class="servicios-card">
+          <h3>Defensa Criminal</h3>
+          <p>
+            Ofrecemos una defensa sólida y estratégica para proteger tus derechos
+            y obtener los mejores resultados posibles en casos criminales.
+          </p>
+          <button id="btnDefensa"> Solicitar </button>
+        </div>
+        <div class="servicios-card">
+          <h3>Asesoramiento Legal</h3>
+          <p>
+            Proporcionamos asesoramiento legal personalizado para ayudarte a
+            entender tus derechos y las opciones disponibles en tu situación
+            específica.
+          </p>
+          <button id="btnAsesoria"> Solicitar </button>
+        </div>
+        <div class="servicios-card">
+          <h3>Representación en Juicios</h3>
+          <p>
+            Nuestra experiencia en el ámbito judicial garantiza una representación
+            efectiva y profesional en todos los niveles del proceso legal.
+          </p>
+          <button id="btnJuicios"> Solicitar </button>
+        </div>
+      </div>
+      <div id="resultadoServicio"></div>
+
+      <p class="titulo-seccion">Herramientas del Despacho</p>
+
+        <div class="panel-coartada">
+          <h2 id="sobremiEntrada">Generador de Coartadas Oficiales</h2>
+          <p class="Subseccion-justicia">¿Te pillaron en el lugar equivocado? No te preocupes, tenemos excusas para todo.</p>
+          <div class="posicion-boton">
+            <button id="btnCoartada" class="btn-coartada">Generar mi coartada</button>
+          </div>
+          <div id="resultadoCoartada"></div>
+        </div>
+      <div class="panel-coartada panel-ancho">
+        <h3 class="titulos-botones">Medidor de Culpabilidad D&J</h3>
+        <p class="Subseccion-justicia">Introduce tu nombre y tu excusa... nosotros hacemos el resto.</p>
+        <div class="controles controles-horizontal">
+          <input type="text" id="inputNombre" placeholder="Tu nombre (o el que uses)" />
+          <select id="selectExcusa">
+            <option value="">-- ¿Cuál es tu excusa? --</option>
+            <option value="noSabe">No sabía que eso era ilegal</option>
+            <option value="amigo">Me lo pidió un amigo</option>
+            <option value="estres">Fue el estrés del trabajo</option>
+            <option value="hambre">Tenía hambre</option>
+          </select>
+          <button id="btnMedir">Medir mi culpabilidad</button>
+        </div>
+        <div id="resultadoMedidor"></div>
+      </div>
+    </main>
+    <footer>
+        <h3>HABLAMOS ESPAÑOL · MÁLAGA · NO GRATUITA · (505) 503-4455</h3>
+      <h2>¿Problemas legales?, acude a nuestras redes sociales y te ayudaremos</h2>
+        <div class="footer-ordenado">
+       
+      <a href="https://x.com/BetterCallSaul"><img src="../imagenes/logoX.png"></a>
+       <a href="https://www.instagram.com/bettercallsaulamc/"><img src="../imagenes/instagram.png" ></a>
+        <a href="https://www.youtube.com/@breakingbad"><img src="../imagenes/YT.png"></a>
+        
+      </div>
+      <p>&copy; 2026 Better Call D&J. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../js/javascript.js"></script>
+  </body>
+</html>
